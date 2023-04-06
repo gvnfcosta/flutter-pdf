@@ -11,12 +11,8 @@ class PdfPreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('PDF Preview'),
-      ),
-      body: PdfPreview(
-        build: (context) => makePdf(invoice),
-      ),
+      appBar: AppBar(title: const Text('PDF Preview')),
+      body: PdfPreview(build: (context) => makePdf(invoice)),
     );
   }
 }

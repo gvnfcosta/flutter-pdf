@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:makepdfs/models/invoice.dart';
 import 'package:makepdfs/pages/detail.dart';
 
@@ -11,10 +10,7 @@ class InvoicePage extends StatelessWidget {
         customer: 'David Thomas',
         address: '123 Fake St\r\nBermuda Triangle',
         items: [
-          LineItem(
-            'Technical Engagement',
-            120,
-          ),
+          LineItem('Technical Engagement', 120),
           LineItem('Deployment Assistance', 200),
           LineItem('Develop Software Solution', 3020.45),
           LineItem('Produce Documentation', 840.50),
@@ -45,27 +41,21 @@ class InvoicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Invoices'),
-      ),
-      body: ListView(
-        children: [
-          ...invoices.map(
-            (e) => ListTile(
-              title: Text(e.name),
-              subtitle: Text(e.customer),
-              trailing: Text('\$${e.totalCost().toStringAsFixed(2)}'),
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (builder) => DetailPage(invoice: e),
-                  ),
-                );
-              },
-            ),
-          )
-        ],
-      ),
+      appBar: AppBar(title: const Text('Invoices')),
+      body: ListView(children: [
+        ...invoices.map(
+          (e) => ListTile(
+            title: Text(e.name),
+            subtitle: Text(e.customer),
+            trailing: Text('\$${e.totalCost().toStringAsFixed(2)}'),
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (builder) => DetailPage(invoice: e)),
+              );
+            },
+          ),
+        )
+      ]),
     );
   }
 }
